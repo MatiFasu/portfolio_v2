@@ -1,24 +1,41 @@
+// Función genérica para toggles
+function setupToggle(headerId, gridId) {
+    const header = document.getElementById(headerId);
+    const grid = document.getElementById(gridId);
+    const icon = header.querySelector('.toggle-icon');
 
-let menu = document.getElementById('menu');
+    header.addEventListener('click', () => {
+        grid.classList.toggle('show');
+        icon.classList.toggle('rotate');
 
-let toggle_open = document.getElementById('toggle_open');
-
-let toggle_close = document.getElementById('toggle_close');
-
-toggle_open.addEventListener('click', toggleMenu);
-toggle_close.addEventListener('click', toggleMenu);
-
-
-function toggleMenu() {
-    menu.classList.toggle('show-menu');
-
-    if(menu.classList.contains('show-menu') ) {
-        toggle_open.style.display = 'none';
-        toggle_close.style.display = 'block';
-    }
-    else {
-        toggle_open.style.display = 'block';
-        toggle_close.style.display = 'none';
-    }
-
+        if (grid.classList.contains('show')) {
+            grid.style.display = (gridId === 'projects-grid') ? 'grid' : 'grid';
+            setTimeout(() => {
+                grid.style.opacity = '1';
+            }, 10);
+            grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+            grid.style.opacity = '0';
+            setTimeout(() => {
+                grid.style.display = 'none';
+            }, 500);
+        }
+    });
 }
+
+// Inicializar toggles
+setupToggle('project-toggle', 'projects-grid');
+setupToggle('certs-toggle', 'certs-grid');
+
+// Scroll suave para links de navegación
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    });
+});
