@@ -157,6 +157,85 @@ body {
     color: var(--accent);
 }
 
+/* Featured Project Summary */
+.featured-project {
+    margin-top: 4rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: var(--transition);
+}
+
+.featured-project:hover {
+    background: rgba(0, 255, 255, 0.05);
+    border-color: rgba(0, 255, 255, 0.2);
+}
+
+.featured-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+}
+
+.featured-project h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.featured-tech {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.featured-tech span {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.featured-tech i {
+    color: var(--accent);
+    font-size: 1rem;
+}
+
+.featured-link {
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: var(--transition);
+}
+
+.featured-link i {
+    font-size: 0.7rem;
+    transition: var(--transition);
+}
+
+.featured-link:hover {
+    color: var(--accent);
+}
+
+.featured-link:hover i {
+    transform: translateY(3px);
+}
+
 /* Common Section Styles */
 section {
     max-width: 900px;

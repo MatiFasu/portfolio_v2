@@ -31,8 +31,18 @@ setupToggle('certs-toggle', 'certs-grid');
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const targetId = this.getAttribute('href');
+        const target = document.querySelector(targetId);
+        
         if (target) {
+            // Si el objetivo está dentro del grid de proyectos y está oculto, mostrarlo
+            if (targetId === '#project-odontologia' || target.closest('#projects-grid')) {
+                const grid = document.getElementById('projects-grid');
+                if (!grid.classList.contains('show')) {
+                    document.getElementById('project-toggle').click();
+                }
+            }
+
             target.scrollIntoView({
                 behavior: 'smooth'
             });
