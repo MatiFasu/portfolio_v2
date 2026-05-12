@@ -1,19 +1,26 @@
 // Función genérica para toggles
-function setupToggle(headerId, gridId) {
+function setupToggle(headerId, gridId, startOpen = true) {
     const header = document.getElementById(headerId);
     const grid = document.getElementById(gridId);
     const icon = header.querySelector('.toggle-icon');
+
+    // Estado inicial
+    if (startOpen) {
+        grid.classList.add('show');
+        icon.classList.add('rotate');
+        grid.style.display = 'grid';
+        grid.style.opacity = '1';
+    }
 
     header.addEventListener('click', () => {
         grid.classList.toggle('show');
         icon.classList.toggle('rotate');
 
         if (grid.classList.contains('show')) {
-            grid.style.display = (gridId === 'projects-grid') ? 'grid' : 'grid';
+            grid.style.display = 'grid';
             setTimeout(() => {
                 grid.style.opacity = '1';
             }, 10);
-            grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
         } else {
             grid.style.opacity = '0';
             setTimeout(() => {
@@ -23,9 +30,9 @@ function setupToggle(headerId, gridId) {
     });
 }
 
-// Inicializar toggles
-setupToggle('project-toggle', 'projects-grid');
-setupToggle('certs-toggle', 'certs-grid');
+// Inicializar toggles abiertos por defecto
+setupToggle('project-toggle', 'projects-grid', true);
+setupToggle('certs-toggle', 'certs-grid', true);
 
 // Scroll suave para links de navegación
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {

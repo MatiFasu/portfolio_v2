@@ -297,6 +297,104 @@ section {
     margin-bottom: 1rem;
 }
 
+/* Experience Timeline Improvements */
+.timeline-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.timeline-header i {
+    font-size: 1.5rem;
+    color: var(--accent);
+}
+
+.experience-list {
+    margin-top: 1rem;
+    padding-left: 1.2rem;
+    list-style: none;
+}
+
+.experience-list li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    font-size: 0.95rem;
+    color: var(--text-dim);
+}
+
+.experience-list li::before {
+    content: "→";
+    position: absolute;
+    left: -1.2rem;
+    color: var(--accent);
+}
+
+/* Skills Section */
+.skills {
+    border-top: 1px solid var(--border);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.skill-category {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.skill-category:hover {
+    border-color: var(--accent);
+    transform: translateY(-5px);
+}
+
+.skill-category h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: var(--text-main);
+}
+
+.skill-category h3 i {
+    color: var(--accent);
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.skill-tags span {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition);
+}
+
+.skill-tags span:hover {
+    background: var(--accent-dim);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.skill-tags i {
+    font-size: 1rem;
+}
+
 /* Certifications Section */
 .certs-header {
     display: flex;
@@ -316,11 +414,11 @@ section {
 }
 
 .certs-grid {
-    display: none; /* Oculto por defecto */
+    display: grid; /* Cambiado para que inicie abierto */
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 1.5rem;
     margin-top: 3rem;
-    opacity: 0;
+    opacity: 1; /* Cambiado para que inicie visible */
     transition: opacity 0.5s ease;
 }
 
@@ -413,11 +511,11 @@ section {
 }
 
 .projects-grid {
-    display: none; /* Oculto por defecto */
+    display: grid; /* Cambiado para que inicie abierto */
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     margin-top: 3rem;
-    opacity: 0;
+    opacity: 1; /* Cambiado para que inicie visible */
     transition: opacity 0.5s ease;
 }
 
