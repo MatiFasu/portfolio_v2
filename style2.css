@@ -568,6 +568,7 @@ section {
 .bi { background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), url('https://images.pexels.com/photos/1148820/pexels-photo-1148820.jpeg?auto=compress&cs=tinysrgb&w=600'); }
 .algoritmos { background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), url('https://images.pexels.com/photos/1089438/pexels-photo-1089438.jpeg?auto=compress&cs=tinysrgb&w=600'); }
 .paralela { background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), url('https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg?auto=compress&cs=tinysrgb&w=600'); }
+.games { background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5)), url('https://cdn.fastly.steamstatic.com/store/library_update/social_media_image.jpg?auto=compress&cs=tinysrgb&w=600'); }
 
 .project-info {
     padding: 1.5rem;
