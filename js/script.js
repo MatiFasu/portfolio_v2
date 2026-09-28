@@ -1,58 +1,109 @@
-// Función genérica para toggles
-function setupToggle(headerId, gridId, startOpen = true) {
-    const header = document.getElementById(headerId);
-    const grid = document.getElementById(gridId);
-    const icon = header.querySelector('.toggle-icon');
+// ============================================================
+// Matías Fasulino - Portfolio Interactivo
+// Manejador de Navegación por Pestañas (Tabs)
+// ============================================================
 
-    // Estado inicial
-    if (startOpen) {
-        grid.classList.add('show');
-        icon.classList.add('rotate');
-        grid.style.display = 'grid';
-        grid.style.opacity = '1';
-    }
+document.addEventListener('DOMContentLoaded', () => {
+    const desktopTabs = document.querySelectorAll('.sidebar-nav .nav-item');
+    const mobileTabs = document.querySelectorAll('.mobile-tabs-header .m-tab-btn');
+    const tabPanes = document.querySelectorAll('.tab-view');
+    const scrollContainer = document.querySelector('.content-scrollable');
 
-    header.addEventListener('click', () => {
-        grid.classList.toggle('show');
-        icon.classList.toggle('rotate');
-
-        if (grid.classList.contains('show')) {
-            grid.style.display = 'grid';
-            setTimeout(() => {
-                grid.style.opacity = '1';
-            }, 10);
-        } else {
-            grid.style.opacity = '0';
-            setTimeout(() => {
-                grid.style.display = 'none';
-            }, 500);
-        }
-    });
-}
-
-// Inicializar toggles abiertos por defecto
-setupToggle('project-toggle', 'projects-grid', true);
-setupToggle('certs-toggle', 'certs-grid', true);
-
-// Scroll suave para links de navegación
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        const target = document.querySelector(targetId);
-        
-        if (target) {
-            // Si el objetivo está dentro del grid de proyectos y está oculto, mostrarlo
-            if (targetId === '#project-odontologia' || target.closest('#projects-grid')) {
-                const grid = document.getElementById('projects-grid');
-                if (!grid.classList.contains('show')) {
-                    document.getElementById('project-toggle').click();
-                }
+    // Función principal para cambiar de pestaña
+    function switchTab(targetTabId) {
+        // 1. Actualizar estado activo en botones desktop
+        desktopTabs.forEach(btn => {
+            if (btn.dataset.tab === targetTabId) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
             }
+        });
 
-            target.scrollIntoView({
+        // 2. Actualizar estado activo en botones mobile
+        mobileTabs.forEach(btn => {
+            if (btn.dataset.tab === targetTabId) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+
+        // 3. Mostrar la vista seleccionada y ocultar las demás
+        tabPanes.forEach(pane => {
+            if (pane.id === `tab-${targetTabId}`) {
+                pane.classList.add('active');
+            } else {
+                pane.classList.remove('active');
+            }
+        });
+
+        // 4. Resetear el scroll del panel de contenido al tope de forma fluida
+        if (scrollContainer) {
+            scrollContainer.scrollTo({
+                top: 0,
                 behavior: 'smooth'
             });
+        }
+
+        // 5. Actualizar URL hash de forma limpia sin saltos de scroll
+        if (history.pushState) {
+            history.pushState(null, null, `#${targetTabId}`);
+        } else {
+            location.hash = `#${targetTabId}`;
+        }
+    }
+
+    // Event listeners para pestañas de desktop
+    desktopTabs.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const tabId = btn.dataset.tab;
+            if (tabId) {
+                switchTab(tabId);
+            }
+        });
+    });
+
+    // Event listeners para pestañas de mobile
+    mobileTabs.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const tabId = btn.dataset.tab;
+            if (tabId) {
+                switchTab(tabId);
+            }
+        });
+    });
+
+    // Event listeners para botones internos que navegan entre pestañas (ej: Call-to-actions en Inicio)
+    document.querySelectorAll('[data-tab-target]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = btn.dataset.tabTarget;
+            if (targetId) {
+                switchTab(targetId);
+            }
+        });
+    });
+
+    // Soporte para cargar directamente mediante el hash de la URL (ej: #projects o #home)
+    const currentHash = window.location.hash.replace('#', '');
+    const validTabs = ['home', 'experience', 'projects', 'certs', 'facultad'];
+    
+    if (validTabs.includes(currentHash)) {
+        switchTab(currentHash);
+    } else {
+        switchTab('home');
+    }
+
+    // Sincronizar en caso de que el usuario use botones Adelante/Atrás del navegador
+    window.addEventListener('popstate', () => {
+        const hash = window.location.hash.replace('#', '');
+        if (validTabs.includes(hash)) {
+            switchTab(hash);
+        } else {
+            switchTab('home');
         }
     });
 });
