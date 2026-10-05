@@ -20,6 +20,39 @@
     --radius: 12px;
 }
 
+/* Soporte de Modo Claro automático y manual por data-theme */
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+        --bg-color: #f8fafc;
+        --sidebar-bg: #ffffff;
+        --card-bg: #ffffff;
+        --card-hover: #f1f5f9;
+        --text-main: #0f172a;
+        --text-dim: #475569;
+        --text-muted: #64748b;
+        --accent: #0284c7;
+        --accent-glow: rgba(2, 132, 199, 0.2);
+        --accent-dim: rgba(2, 132, 199, 0.08);
+        --border: rgba(15, 23, 42, 0.09);
+        --border-accent: rgba(2, 132, 199, 0.35);
+    }
+}
+
+[data-theme="light"] {
+    --bg-color: #f8fafc;
+    --sidebar-bg: #ffffff;
+    --card-bg: #ffffff;
+    --card-hover: #f1f5f9;
+    --text-main: #0f172a;
+    --text-dim: #475569;
+    --text-muted: #64748b;
+    --accent: #0284c7;
+    --accent-glow: rgba(2, 132, 199, 0.2);
+    --accent-dim: rgba(2, 132, 199, 0.08);
+    --border: rgba(15, 23, 42, 0.09);
+    --border-accent: rgba(2, 132, 199, 0.35);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -537,57 +570,432 @@ html, body {
     font-weight: 700;
 }
 
-/* Grid de Enfoque Rápido */
-.home-grid-highlights {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.4rem;
+/* ============================================================
+   SECCIÓN: HERO JOURNEY (LÍNEA PRINCIPAL + 3 TARJETAS EN RECORRIDO)
+   ============================================================ */
+.journey-hero-header {
     margin-bottom: 2rem;
 }
 
-.home-mini-card {
+.journey-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-bottom: 0.6rem;
+}
+
+.journey-eyebrow .eyebrow-icon {
+    width: 15px;
+    height: 15px;
+}
+
+.journey-headline {
+    font-size: 1.95rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1.25;
+    color: var(--text-main);
+}
+
+.journey-headline .headline-accent {
+    color: var(--accent);
+    font-weight: 400;
+    text-shadow: 0 0 18px var(--accent-glow);
+}
+
+/* Pista de tarjetas y conectores */
+.journey-track {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 2.2rem;
+}
+
+/* Tarjeta individual */
+.journey-card {
+    flex: 1 1 0;
+    min-width: 0;
     background: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 1.5rem;
+    padding: 1.4rem 1.3rem;
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    justify-content: space-between;
+    transition: var(--transition);
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.journey-card:hover {
+    border-color: var(--border-accent);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35), 0 0 15px rgba(0, 240, 255, 0.1);
+}
+
+/* Tarjeta 2 clickeable */
+.journey-card-link {
+    cursor: pointer;
+}
+
+/* Tarjeta 3 (Objetivo Backend) con sutil acento */
+.journey-card-target {
+    border-color: rgba(0, 240, 255, 0.28);
+    background: linear-gradient(170deg, var(--card-bg) 0%, var(--accent-dim) 100%);
+}
+
+.journey-card-target:hover {
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px rgba(0, 240, 255, 0.2);
+}
+
+/* Navegación accesible por teclado */
+.journey-card:focus-visible,
+.journey-card-link:focus-visible,
+.card-btn-action:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+/* Top metadata */
+.card-top-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.card-step {
+    font-size: 0.75rem;
+    font-weight: 800;
+    font-family: monospace;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+}
+
+.card-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 0.2rem 0.55rem;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+}
+
+.card-badge-project {
+    color: #38bdf8;
+    border-color: rgba(56, 189, 248, 0.25);
+}
+
+.card-badge-target {
+    background: var(--accent-dim);
+    color: var(--accent);
+    border-color: var(--border-accent);
+}
+
+/* Ícono Ancla Visual */
+.card-visual-anchor {
+    margin-bottom: 1rem;
+    display: inline-flex;
+    align-items: center;
+    color: var(--text-main);
+}
+
+.card-svg-icon {
+    width: 42px;
+    height: 42px;
+}
+
+/* Cuerpo de la tarjeta */
+.card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.3rem;
+}
+
+.card-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: -0.25px;
+    line-height: 1.3;
+    margin-bottom: 0.45rem;
+}
+
+.card-summary {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+    margin-bottom: 0.95rem;
+}
+
+/* Chips del stack (Tarjeta 1) */
+.card-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: auto;
+}
+
+.tech-chip {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.2rem 0.55rem;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    color: var(--text-main);
     transition: var(--transition);
 }
 
-.home-mini-card:hover {
-    border-color: var(--accent);
-    background: var(--card-hover);
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+.journey-card:hover .tech-chip {
+    border-color: rgba(255, 255, 255, 0.15);
 }
 
-.home-mini-card.highlight-border {
-    border-color: rgba(0, 240, 255, 0.25);
-    background: linear-gradient(145deg, rgba(22, 25, 34, 1), rgba(0, 240, 255, 0.04));
+/* Mini diagrama visual (Tarjeta 2: DB2 → Oracle) */
+.mini-diagram {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-top: auto;
+    padding: 0.45rem 0.6rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    width: fit-content;
 }
 
-.mini-card-icon {
-    font-size: 1.5rem;
-    color: var(--accent);
+.diagram-node {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-main);
 }
 
-.mini-card-icon.accent-icon {
+.diagram-node .db-icon {
+    width: 15px;
+    height: 15px;
     color: #38bdf8;
 }
 
-.mini-card-info h4 {
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--text-main);
-    margin-bottom: 0.35rem;
+.diagram-node.diagram-node-active .db-icon {
+    color: #ea580c;
 }
 
-.mini-card-info p {
-    font-size: 0.86rem;
+.diagram-arrow-svg {
+    width: 20px;
+    height: 14px;
+}
+
+/* Mini camino visual (Tarjeta 3: SQL/PeopleSoft → APIs → Docker) */
+.mini-path {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: auto;
+    font-size: 0.72rem;
+    font-weight: 600;
+}
+
+.path-step {
+    padding: 0.18rem 0.45rem;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
     color: var(--text-dim);
-    line-height: 1.5;
+}
+
+.path-step.path-highlight {
+    color: var(--accent);
+    border-color: var(--border-accent);
+    background: var(--accent-dim);
+}
+
+.path-arrow {
+    color: var(--accent);
+    font-weight: 800;
+}
+
+/* Footer y Dato Clave */
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+}
+
+.card-metric {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.metric-value {
+    font-size: 0.88rem;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: -0.2px;
+}
+
+.metric-label {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+}
+
+/* Estado y acciones */
+.card-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-dim);
+}
+
+.status-indicator-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #10b981;
+    box-shadow: 0 0 6px #10b981;
+}
+
+.card-action-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--accent);
+    transition: var(--transition);
+}
+
+.journey-card-link:hover .card-action-link {
+    transform: translateX(3px);
+}
+
+.card-btn-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #050608;
+    background: var(--accent);
+    border: none;
+    padding: 0.45rem 0.85rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+}
+
+.card-btn-action:hover {
+    background: #4df5ff;
+    transform: translateY(-1px);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+}
+
+/* Conectores con Flechas */
+.journey-connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 36px;
+    color: var(--accent);
+    opacity: 0.85;
+    animation: arrowFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.connector-arrow-h {
+    display: block;
+    width: 32px;
+    height: 18px;
+}
+
+.connector-arrow-v {
+    display: none;
+    width: 18px;
+    height: 32px;
+}
+
+@keyframes arrowFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-8px);
+    }
+    100% {
+        opacity: 0.85;
+        transform: translateX(0);
+    }
+}
+
+@keyframes arrowFadeInV {
+    0% {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    100% {
+        opacity: 0.85;
+        transform: translateY(0);
+    }
+}
+
+/* Reducción de movimiento accesible */
+@media (prefers-reduced-motion: reduce) {
+    .journey-connector,
+    .journey-card,
+    .card-btn-action,
+    .card-action-link {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+    }
+}
+
+/* Responsive: Móviles y Tablets */
+@media (max-width: 960px) {
+    .journey-track {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.6rem;
+    }
+
+    .journey-connector {
+        width: 100%;
+        height: 28px;
+        animation-name: arrowFadeInV;
+    }
+
+    .connector-arrow-h {
+        display: none;
+    }
+
+    .connector-arrow-v {
+        display: block;
+    }
+
+    .journey-headline {
+        font-size: 1.55rem;
+    }
 }
 
 /* CTA Box */

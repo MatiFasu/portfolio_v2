@@ -76,13 +76,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Event listeners para botones internos que navegan entre pestañas (ej: Call-to-actions en Inicio)
+    // Event listeners para botones y tarjetas internas que navegan entre pestañas
     document.querySelectorAll('[data-tab-target]').forEach(btn => {
-        btn.addEventListener('click', (e) => {
+        const handleNav = (e) => {
             e.preventDefault();
             const targetId = btn.dataset.tabTarget;
             if (targetId) {
                 switchTab(targetId);
+            }
+        };
+
+        btn.addEventListener('click', handleNav);
+        
+        // Soporte de accesibilidad: navegar con teclado (Enter y Espacio)
+        btn.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                handleNav(e);
             }
         });
     });

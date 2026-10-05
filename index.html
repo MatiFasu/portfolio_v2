@@ -138,31 +138,219 @@
             </div>
 
             <div class="content-scrollable">
-                <!-- TAB 0: INICIO -->
-                <section class="tab-view active" id="tab-home">
-                    <div class="view-header">
-                        <div>
-                            <span class="eyebrow"><i class="fas fa-terminal"></i> Perfil Profesional</span>
-                            <h2 class="view-title">Desarrollador <span>Backend</span></h2>
-                        </div>
-                    </div>
+                <!-- TAB 0: INICIO (HERO + 3 TARJETAS EN RECORRIDO) -->
+                <section class="tab-view active" id="tab-home" aria-labelledby="journey-hero-title">
+                    
+                    <!-- 1. Encabezado Principal / Hero Headline -->
+                    <header class="journey-hero-header">
+                        <h2 id="journey-hero-title" class="journey-headline">
+                            <span data-i18n="hero.headlinePrefix">Analista Técnico PeopleSoft</span> 
+                            <span class="headline-accent" data-i18n="hero.headlineHighlight">/</span> 
+                            <span data-i18n="hero.headlineSuffix">Backend Developer</span>
+                        </h2>
+                    </header>
 
-                    <!-- Tarjetón Principal / Pitch -->
-                    <div class="home-pitch-card">
-                        <div class="home-pitch-header">
-                            <div class="home-pitch-avatar">
-                                <i class="fas fa-code"></i>
+                    <!-- 2. Tres Tarjetas en Fila Conectadas por Flechas: Dónde estoy → Qué logré → Adónde voy -->
+                    <div class="journey-track" role="region" aria-label="Línea de evolución profesional">
+                        
+                        <!-- ============================================================
+                             TARJETA 1: Dónde estoy (Experiencia Actual)
+                             ============================================================ -->
+                        <article class="journey-card" tabindex="0" aria-labelledby="card-1-title">
+                            <div class="card-top-meta">
+                                <span class="card-step" aria-label="Paso 1">01</span>
+                                <span class="card-badge" data-i18n-key="current.badge">Dónde estoy</span>
                             </div>
-                            <div>
-                                <h3 class="home-pitch-title">¡Hola! Soy Matías Fasulino</h3>
-                                <p class="home-pitch-role">Backend Developer • Java & Spring Boot • Analista Técnico PeopleSoft</p>
+
+                            <!-- Ícono grande ancla visual (SVG inline) -->
+                            <div class="card-visual-anchor" aria-hidden="true">
+                                <svg class="card-svg-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="4" y="8" width="40" height="32" rx="6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                                    <path d="M4 16H44" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    <circle cx="10" cy="12" r="1.5" fill="currentColor"/>
+                                    <circle cx="15" cy="12" r="1.5" fill="currentColor"/>
+                                    <path d="M14 26L19 30L14 34" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M23 34H33" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                                </svg>
                             </div>
+
+                            <div class="card-body">
+                                <h3 id="card-1-title" class="card-title" data-i18n-key="current.title">Analista Técnico PeopleSoft</h3>
+                                <!-- Máximo 6 a 8 palabras -->
+                                <p class="card-summary" data-i18n-key="current.summary">Análisis y desarrollo de sistema legacy.</p>
+
+                                <!-- Chips del stack -->
+                                <div class="card-chips" aria-label="Tecnologías principales">
+                                    <span class="tech-chip">PeopleCode</span>
+                                    <span class="tech-chip">SQR</span>
+                                    <span class="tech-chip">SQL</span>
+                                </div>
+                            </div>
+
+                            <!-- ============================================================
+                                 COMPLETAR: Años de experiencia o cantidad de módulos
+                                 Ejemplos: "+2 años de experiencia" | "3 módulos críticos"
+                                 ============================================================ -->
+                            <div class="card-footer">
+                                <div class="card-metric">
+                                    <span class="metric-value" data-i18n-key="current.keyMetricValue">+2 años</span>
+                                    <span class="metric-label">de experiencia</span>
+                                </div>
+                                <span class="card-status-pill">
+                                    <span class="status-indicator-dot" aria-hidden="true"></span>
+                                    <span data-i18n-key="current.statusLabel">Rol actual</span>
+                                </span>
+                            </div>
+                        </article>
+
+                        <!-- Conector 1 → 2: Flecha responsiva con animación suave -->
+                        <div class="journey-connector" aria-hidden="true">
+                            <svg class="connector-arrow connector-arrow-h" viewBox="0 0 36 20" fill="none" stroke="currentColor">
+                                <path d="M0 10H30M30 10L20 3M30 10L20 17" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <svg class="connector-arrow connector-arrow-v" viewBox="0 0 20 36" fill="none" stroke="currentColor">
+                                <path d="M10 0V30M10 30L3 20M10 30L17 20" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                         </div>
-                        <p class="home-pitch-text">
-                            Actualmente, me desempeño dentro de entornos PeopleSoft: como Analista Técnico y como responsable de la ejecución de migración de base de datos (DB2 a Oracle).
-                        </p>
-                        <p class="home-pitch-text">
-                            Mi objetivo profesional es especializarme en el desarrollo backend donde tengo que experiencia con java y spring boot.
+
+                        <!-- ============================================================
+                             TARJETA 2: Qué logré (Proyecto Crítico) - Clickeable
+                             ============================================================ -->
+                        <article class="journey-card journey-card-link" 
+                                 tabindex="0" 
+                                 role="link" 
+                                 data-tab-target="experience" 
+                                 aria-labelledby="card-2-title"
+                                 aria-label="Ver detalles de la migración DB2 a Oracle">
+                            
+                            <div class="card-top-meta">
+                                <span class="card-step" aria-label="Paso 2">02</span>
+                                <span class="card-badge card-badge-project" data-i18n-key="project.badge">Qué logré</span>
+                            </div>
+
+                            <!-- Ícono grande ancla visual (SVG inline) -->
+                            <div class="card-visual-anchor" aria-hidden="true">
+                                <svg class="card-svg-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <ellipse cx="24" cy="11" rx="15" ry="5" stroke="currentColor" stroke-width="2.2"/>
+                                    <path d="M9 11V21C9 23.76 15.72 26 24 26C32.28 26 39 23.76 39 21V11" stroke="currentColor" stroke-width="2.2"/>
+                                    <path d="M9 21V31C9 33.76 15.72 36 24 36C32.28 36 39 33.76 39 31V21" stroke="currentColor" stroke-width="2.2"/>
+                                    <path d="M28 29L36 37M36 37L28 45M36 37H14" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 id="card-2-title" class="card-title" data-i18n-key="project.title">Migración DB2 → Oracle</h3>
+                                <!-- Máximo 6 a 8 palabras -->
+                                <p class="card-summary" data-i18n-key="project.summary">Transición de datos asegurando continuidad operativa.</p>
+
+                                <!-- Mini diagrama visual: ícono de base de datos → flecha → ícono de base de datos -->
+                                <div class="mini-diagram" aria-label="Diagrama: de DB2 hacia Oracle">
+                                    <div class="diagram-node">
+                                        <svg class="db-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                            <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                                            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                                            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                                        </svg>
+                                        <span>DB2</span>
+                                    </div>
+                                    <svg class="diagram-arrow-svg" viewBox="0 0 24 16" fill="none" stroke="var(--accent)" stroke-width="2" aria-hidden="true">
+                                        <path d="M0 8H18M18 8L12 2M18 8L12 14" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <div class="diagram-node diagram-node-active">
+                                        <svg class="db-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                            <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                                            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                                            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                                        </svg>
+                                        <span>Oracle</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ============================================================
+                                 COMPLETAR: Mi rol o un número representativo
+                                 Ejemplos: "Ejecución técnica integral" | "+150 tablas migradas"
+                                 ============================================================ -->
+                            <div class="card-footer">
+                                <div class="card-metric">
+                                    <span class="metric-value" data-i18n-key="project.keyMetricValue">Ejecución técnica</span>
+                                    <span class="metric-label">e integridad de datos</span>
+                                </div>
+                                <!-- ============================================================
+                                     COMPLETAR: Enlace o sección de detalle
+                                     ============================================================ -->
+                                <span class="card-action-link" data-i18n-key="project.actionLabel">
+                                    Ver caso <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                        </article>
+
+                        <!-- Conector 2 → 3: Flecha responsiva con animación suave -->
+                        <div class="journey-connector" aria-hidden="true">
+                            <svg class="connector-arrow connector-arrow-h" viewBox="0 0 36 20" fill="none" stroke="currentColor">
+                                <path d="M0 10H30M30 10L20 3M30 10L20 17" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <svg class="connector-arrow connector-arrow-v" viewBox="0 0 20 36" fill="none" stroke="currentColor">
+                                <path d="M10 0V30M10 30L3 20M10 30L17 20" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+
+                        <!-- ============================================================
+                             TARJETA 3: Adónde voy (Objetivo Backend Developer)
+                             ============================================================ -->
+                        <article class="journey-card journey-card-target" tabindex="0" aria-labelledby="card-3-title">
+                            <div class="card-top-meta">
+                                <span class="card-step" aria-label="Paso 3">03</span>
+                                <span class="card-badge card-badge-target" data-i18n-key="target.badge">Adónde voy</span>
+                            </div>
+
+                            <!-- Ícono grande ancla visual (SVG inline) -->
+                            <div class="card-visual-anchor" aria-hidden="true">
+                                <svg class="card-svg-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="6" y="8" width="36" height="12" rx="3" stroke="currentColor" stroke-width="2.2"/>
+                                    <circle cx="12" cy="14" r="1.5" fill="var(--accent)"/>
+                                    <circle cx="17" cy="14" r="1.5" fill="currentColor"/>
+                                    <path d="M26 14H36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    <rect x="6" y="24" width="36" height="12" rx="3" stroke="currentColor" stroke-width="2.2"/>
+                                    <circle cx="12" cy="30" r="1.5" fill="var(--accent)"/>
+                                    <circle cx="17" cy="30" r="1.5" fill="currentColor"/>
+                                    <path d="M26 30H36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    <path d="M24 20V24M24 36V40" stroke="var(--accent)" stroke-width="2.2" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 id="card-3-title" class="card-title" data-i18n-key="target.title">Desarrollador Backend</h3>
+                                <!-- Máximo 6 a 8 palabras -->
+                                <p class="card-summary" data-i18n-key="target.summary">Construcción de APIs REST.</p>
+
+                                <!-- Mini camino visual: SQL/PeopleSoft → APIs, Java Spring Boot, Docker -->
+                                <div class="mini-path" aria-label="Camino tecnológico hacia Backend">
+                                    <span class="path-step">SQL / PeopleSoft</span>
+                                    <span class="path-arrow" aria-hidden="true">→</span>
+                                    <span class="path-step path-highlight">APIs &amp; Spring Boot</span>
+                                    <span class="path-arrow" aria-hidden="true">→</span>
+                                    <span class="path-step">Docker</span>
+                                </div>
+                            </div>
+
+                            <!-- ============================================================
+                                 COMPLETAR: Foco principal o stack objetivo
+                                 ============================================================ -->
+                            <div class="card-footer">
+                                <div class="card-metric">
+                                    <span class="metric-value" data-i18n-key="target.keyMetricValue">Java • Spring Boot</span>
+                                </div>
+                                
+                                <!-- ============================================================
+                                     COMPLETAR: Botón o link a proyecto propio
+                                     Ejemplo: data-tab-target="projects" o href="https://..."
+                                     ============================================================ -->
+                                <button type="button" class="card-btn-action" data-tab-target="projects" data-i18n-key="target.actionLabel">
+                                    Ver proyectos <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </article>
                     </div>
 
                     <!-- Call to action para navegar directamente -->
@@ -469,6 +657,7 @@
     </div>
 
     <!-- Scripts -->
+    <script src="js/hero-data.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>
