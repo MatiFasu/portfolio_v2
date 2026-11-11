@@ -462,8 +462,37 @@
                     </div>
 
                     <div class="cards-grid">
-                        <!-- Proyecto: Consultorio -->
-                        <article class="project-item">
+                        <!-- Proyecto Principal: Agencia de Turismo & Hotel -->
+                        <article class="project-item featured">
+                            <div class="project-banner turismo">
+                                <span class="project-featured-badge">
+                                    <i class="fas fa-star"></i> Proyecto Destacado
+                                </span>
+                                <div class="project-badges">
+                                    <span class="tech-badge"><i class="devicon-springboot-plain"></i> Spring Boot</span>
+                                    <span class="tech-badge"><i class="devicon-react-original"></i> React</span>
+                                    <span class="tech-badge"><i class="devicon-postgresql-plain"></i> PostgreSQL</span>
+                                </div>
+                            </div>
+                            <div class="project-details">
+                                <h3 class="project-title">Agencia de Turismo & Hotel - Spring Boot + React</h3>
+                                <p class="project-desc">Sistema integral de gestión comercial y reservas para turismo y hotelería. Backend RESTful en Spring Boot con PostgreSQL, paquetes turísticos, ventas con snapshot financiero y frontend en React.</p>
+                                <div class="project-actions">
+                                    <a href="https://github.com/MatiFasu/hotel_frontend" target="_blank" class="btn-action btn-outline" title="Ver repositorio Frontend en GitHub">
+                                        <i class="fab fa-github"></i> Frontend
+                                    </a>
+                                    <a href="https://github.com/MatiFasu/hotel_backend" target="_blank" class="btn-action btn-outline" title="Ver repositorio Backend en GitHub">
+                                        <i class="fab fa-github"></i> Backend
+                                    </a>
+                                    <a href="https://agencia-turismo-todocode.netlify.app/" target="_blank" class="btn-action btn-accent" title="Abrir aplicación en vivo">
+                                        <i class="fas fa-arrow-up-right-from-square"></i> Ver Demo
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Proyecto: Consultorio (Oculto inicialmente) -->
+                        <article class="project-item more-project project-hidden" id="project-odontologia">
                             <div class="project-banner odontologia">
                                 <div class="project-badges">
                                     <span class="tech-badge"><i class="devicon-springboot-plain"></i> Spring Boot</span>
@@ -484,6 +513,15 @@
                                 </div>
                             </div>
                         </article>
+                    </div>
+
+                    <!-- Botón para abrir / cerrar más proyectos -->
+                    <div class="more-projects-trigger-wrap">
+                        <button type="button" class="btn-more-projects" id="btn-toggle-projects" aria-expanded="false" aria-controls="project-odontologia">
+                            <i class="fas fa-layer-group"></i>
+                            <span class="btn-more-text">Abrir más proyectos</span>
+                            <i class="fas fa-chevron-down arrow-icon"></i>
+                        </button>
                     </div>
                 </section>
 

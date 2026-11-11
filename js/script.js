@@ -115,4 +115,32 @@ document.addEventListener('DOMContentLoaded', () => {
             switchTab('home');
         }
     });
+
+    // Control para abrir / cerrar más proyectos
+    const btnToggleProjects = document.getElementById('btn-toggle-projects');
+    if (btnToggleProjects) {
+        const moreProjects = document.querySelectorAll('.more-project');
+        const btnText = btnToggleProjects.querySelector('.btn-more-text');
+
+        btnToggleProjects.addEventListener('click', () => {
+            const isExpanded = btnToggleProjects.getAttribute('aria-expanded') === 'true';
+
+            moreProjects.forEach(item => {
+                if (isExpanded) {
+                    item.classList.add('project-hidden');
+                    item.classList.remove('revealed');
+                } else {
+                    item.classList.remove('project-hidden');
+                    item.classList.add('revealed');
+                }
+            });
+
+            btnToggleProjects.setAttribute('aria-expanded', !isExpanded);
+            btnToggleProjects.classList.toggle('is-open', !isExpanded);
+
+            if (btnText) {
+                btnText.textContent = isExpanded ? 'Abrir más proyectos' : 'Ver menos proyectos';
+            }
+        });
+    }
 });
